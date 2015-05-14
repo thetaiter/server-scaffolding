@@ -1,5 +1,6 @@
 {
-  "name": "Server Scaffolding",
+  "name": "server-scaffolding",
+  "repository": "http://github.com/thetaiter/server-scaffolding.git",
   "version": "1.0.0",
   "description": "Development scaffolding for nodejs server",
   "main": "server.js",
@@ -8,5 +9,7 @@
   },
   "author": "Ian Tait <thetaiter@gmail.com>",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.12.3"
+  }
 }
