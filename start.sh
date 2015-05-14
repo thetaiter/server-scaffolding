@@ -4,8 +4,14 @@ RUN_SCRIPT='node server.js'
 LOG_LOCATION='log'
 KILLED=false
 
+cd $(dirname $0)
+
+if ! [ -d "$LOG_LOCATION" ]; then
+    mkdir -p $LOG_LOCATION
+fi
+
 if [ -f $LOG_LOCATION/.pid ]; then
-    PID=$(cat log/.pid)
+    PID=$(cat $LOG_LOCATION/.pid)
 
     printf "\nThere is already a server running with PID=%i.\nWould you like to kill this process before running a new process?\nAll logging information for the current process will be lost regardless. (Y/N): " $PID
 
