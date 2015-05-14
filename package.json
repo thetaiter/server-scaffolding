@@ -1,0 +1,12 @@
+{
+  "name": "Server Scaffolding",
+  "version": "1.0.0",
+  "description": "Development scaffolding for nodejs server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Ian Tait <thetaiter@gmail.com>",
+  "license": "ISC",
+  "dependencies": {}
+}
