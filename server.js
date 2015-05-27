@@ -1,6 +1,6 @@
 var express = require('express'),
     app = express(),
-    default_port = 3000;
+    default_port = process.env.PORT || 3000;
 
 app.get('/', function(req, res) {
     res.send('Hello world!');
