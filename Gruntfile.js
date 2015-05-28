@@ -1,35 +1,36 @@
 'use strict';
 
 module.exports = function(grunt) {
-
-    // Project configuration
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         jshint: {
             all: {
-                src: ['Gruntfile.js', 'server.js', 'app/**/*.js', 'config/*.js', 'public/js/**/*.js', 'tasks/*.js'],
+                src: ['Gruntfile.js', 'server.js', 'tests/**/*.js', 'tasks/**/*.js'],
                 options: {
                     jshintrc: true
                 }
             }
         },
         nodeunit: {
-            all: ['test/**/*_test.js'],
-            options: {
-                reporter: 'default'
-            }
+            all: ['tests/*_test.js'] 
         }
     });
 
-    // Load npm plugins
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
-    // Default task
-    grunt.registerTask('default', ['jshint', 'nodeunit']);
+    grunt.registerTask('default', 'Alias for \'jshint\' and \'nodeunit\' tasks.' , ['jshint', 'nodeunit']);
 
-    // My custom tasks
-    grunt.registerTask('my_task', function() {
-        console.log('\nHaha!\n');
+    grunt.registerTask('available_tasks', 'List all available grunt tasks', function(sorted) {
+        return require('./tasks/available_tasks')(grunt, sorted);
+    });
+
+    grunt.registerTask('create_help', 'Creates a help entry for the specified grunt task.', function (task) {
+        var done = this.async();
+        return require('./tasks/create_help')(grunt, task, done);
+    });
+
+    grunt.registerTask('help', 'View the help entry for the specified grunt task.', function(task) {
+        return require('./tasks/help.js')(task);
     });
 };
