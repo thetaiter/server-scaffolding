@@ -19,7 +19,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
-    grunt.registerTask('default', 'Alias for \'jshint\' and \'nodeunit\' tasks.' , ['jshint', 'nodeunit']);
+    grunt.registerTask('default', 'Alias for \'jshint\', \'nodeunit\', and \'run\' tasks.' , ['jshint', 'nodeunit', 'run']);
 
     grunt.registerTask('available_tasks', 'List all available grunt tasks', function(sorted) {
         return require('./tasks/available_tasks')(grunt, sorted);
@@ -32,5 +32,10 @@ module.exports = function(grunt) {
 
     grunt.registerTask('help', 'View the help entry for the specified grunt task.', function(task) {
         return require('./tasks/help.js')(task);
+    });
+
+    grunt.registerTask('run', 'Run the server.', function() {
+        var done = this.async();
+        return require('./tasks/run.js')(done);
     });
 };
