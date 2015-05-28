@@ -3,3 +3,5 @@
 *.port
 *.swp
 node_modules/
+test/log/
+test/xml/
