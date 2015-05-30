@@ -6,9 +6,16 @@ function createJSON(key, value) {
 
 function getArgumentNames(task){
     var reg = /\(([\s\S]*?)\)/,
-        args = reg.exec(require('./' + task));
+        fs = require('fs'),
+        args = [''];
 
-    return args[1].split(', ');
+        try {
+            args = reg.exec(require('./' + task))[1].split(', ');
+        } catch (e) {
+            // Left empty intentionally... getting here means the task is not a custom task in the 'tasks' directory
+        }
+
+        return args;
 }
 
 module.exports = function(grunt, task, done) {
@@ -16,7 +23,11 @@ module.exports = function(grunt, task, done) {
         _task = tasks[task];
 
     if (!_task) {
-        console.log(('No grunt task found with the name "' + task + '".\n').red);
+        if (task === undefined) {
+            task = 'undefined';
+        }
+
+        console.log('No grunt task found with the name "%s".\n'.red, task.bold);
         return done(false);
     }
 
@@ -24,13 +35,15 @@ module.exports = function(grunt, task, done) {
 
     for (var i = 0; i < help.length; i++) {
         if (help[i][task]) {
-            console.log(('Help entry already exists for this task.\n').red);
+            console.log('Help entry already exists for this task.\n'.red);
             return done(false);
         }
     }
 
     var jf = require('jsonfile'),
         args = getArgumentNames(task);
+
+    jf.spaces = 2;
 
     if (_task.info.indexOf('Alias') === -1 && _task.meta.info.indexOf('Npm') === -1 && !(args.length === 1 && args[0] === '')) {
         var prompt = require('prompt');
@@ -53,9 +66,9 @@ module.exports = function(grunt, task, done) {
 
         prompt.start();
 
-        console.log('Creating help entry for task "' + task + '"...\n');
+        console.log('Creating help entry for task "%s"...\n', task);
 
-        prompt.get(args, function(err, answers) {
+        return prompt.get(args, function(err, answers) {
             if (err) {
                 console.log(err.toString().red + '\n');
                 return done(false);
@@ -68,7 +81,7 @@ module.exports = function(grunt, task, done) {
 
             prompt.message = 'Input number of examples';
 
-            prompt.get(' -> ', function (err, answer) {
+            return prompt.get(' -> ', function (err, answer) {
                 if (err) {
                     console.log(err.toString().red + '\n');
                     return done(false);
@@ -85,7 +98,7 @@ module.exports = function(grunt, task, done) {
 
                 prompt.message = 'Input example';
 
-                prompt.get(examples, function(err, exampleAnswers) {
+                return prompt.get(examples, function(err, exampleAnswers) {
                     if (err) {
                         console.log(err.toString().red + '\n');
                         return done(false);
@@ -103,13 +116,17 @@ module.exports = function(grunt, task, done) {
 
                     help[help.length - 1][task].examples = examples;
 
-                    jf.writeFile('./tasks/help.json', help, function (error) {
+                    if (help[help.length - 1][task].arguments === {}) {
+                        delete help[help.length - 1][task].arguments;
+                    }
+
+                    return jf.writeFile('./tasks/help.json', help, function (error) {
                         if (error) {
-                            console.log(('\nThere was an error writing to the help.json file:\n\n\t' + error).red);
+                            console.log('\nThere was an error writing to the help.json file:\n\n\t%s'.red, error);
                             return done(false);
                         } else {
                             console.log('\nEntry written to help.json successfully.');
-                            return done(true);
+                            return done();
                         }
                     });
                 });
@@ -118,20 +135,21 @@ module.exports = function(grunt, task, done) {
     } else {
         console.log('Task is an alias or an NPM task, or the task does not take any arguments.\nCreating help entry with description and example...\n');
 
-        var entry = JSON.parse('{"' + task + '": ' + '{"description": "' + _task.info + '", "examples": []}}');
+        var entry = JSON.parse('{' + task + '": ' + '{"description": "' + _task.info + '", "examples": []}}');
 
-        entry[task].examples = ['"grunt ' + task + '"'];
+        entry[task].examples = ['grunt ' + task];
 
         help.push(entry);
 
-        jf.writeFile('./tasks/help.json', help, function(error) {
+        return jf.writeFile('./tasks/help.json', help, function(error) {
             if (error) {
-                console.log(('There was an error writing to the help.json file:\n\n\t' + error).red);
+                console.log('There was an error writing to the help.json file:\n\n\t%s'.red, error);
                 return done(false);
             } else {
                 console.log('Entry written to help.json successfully.');
-                return done(true);
+                return done();
             }
         });
     }
 };
+

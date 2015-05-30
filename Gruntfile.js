@@ -33,6 +33,11 @@ module.exports = function(grunt) {
         return require('./tasks/create_help')(grunt, task, done);
     });
 
+    grunt.registerTask('delete_help', 'Delete the help entry for the specified grunt task.', function(task) {
+        var done = this.async();
+        return require('./tasks/delete_help')(task, done);
+    });
+
     grunt.registerTask('help', 'View the help entry for the specified grunt task.', function(task) {
         return require('./tasks/help.js')(task);
     });
@@ -42,3 +47,4 @@ module.exports = function(grunt) {
         return require('./tasks/run.js')(done);
     });
 };
+

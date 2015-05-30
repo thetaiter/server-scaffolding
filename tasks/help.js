@@ -2,7 +2,7 @@
 
 module.exports = function(task) {
     if (!task) {
-        console.log('Please input a task to receive help info for.\n'.red);
+        console.log('Please input a task to receive help info for. Run \'grunt available_tasks\' to get a list of all grunt tasks.\n'.red);
 
         return false;
     }
@@ -55,3 +55,4 @@ module.exports = function(task) {
 
     return false;
 };
+

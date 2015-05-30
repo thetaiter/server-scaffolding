@@ -26,3 +26,4 @@ module.exports = function(grunt, sorted) {
         console.log(task);
     });
 };
+

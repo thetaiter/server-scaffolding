@@ -5,19 +5,40 @@ module.exports = function(done) {
         port = server.port,
         server = server.server;
 
-    server.on('error', function(err) {
-        if (err.message === 'listen EADDRINUSE') {
-            console.error('\nERROR: Port %s is in use. Perhaps you already have a server running on this port?\n'.red, port);
+    function shutdown(signal) {
+        if (signal) {
+            console.log('\b\bCaught %s, killing server gracefully.'.yellow, signal);
         } else {
-            console.error('\n', err);
+            console.log('Server shutdown gracefully.');
         }
 
-        done(false);
+        server.close();
+
+        return done();
+    }
+
+    server.on('error', function(err) {
+        if (err.message === 'listen EADDRINUSE') {
+            console.error('%s'.red, err);
+            console.error('\nIt\'s possible that port %s is in use. Perhaps you already have a server running on this port?\n', port);
+        } else {
+            console.error(('\n' + err).red);
+        }
+
+        return done(false);
     });
 
     process.on('SIGINT', function() {
-        console.log('\b\bCaught SIGINT, killing server gracefully.'.yellow);
-        server.close();
-        done();
+        return shutdown('SIGINT');
+    });
+
+    // Handler for when the server is externally killed with 'kill' or 'killall' ('kill -9' produces the SIGKILL signal and cannot be caught by any process)
+    process.on('SIGTERM', function() {
+        return shutdown('SIGTERM');
+    });
+
+    process.on('SIGQUIT', function() {
+        return shutdown('SIGQUIT');
     });
 };
+
