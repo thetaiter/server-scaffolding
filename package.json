@@ -17,6 +17,7 @@
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.11.2",
     "grunt-contrib-nodeunit": "^0.4.1",
-    "grunt-forever": "^0.4.7"
+    "grunt-forever": "^0.4.7",
+    "grunt-githooks": "^0.3.1"
   }
 }

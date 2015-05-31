@@ -3,6 +3,11 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        githooks: {
+            all: {
+                'pre-commit': 'jshint, nodeunit'
+            }
+        },
         jshint: {
             all: {
                 src: ['Gruntfile.js', 'server.js', 'tests/**/*.js', 'tasks/**/*.js'],
@@ -30,11 +35,12 @@ module.exports = function(grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-githooks');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
     grunt.loadNpmTasks('grunt-forever');
 
-    grunt.registerTask('default', 'Alias for \'jshint\', \'nodeunit\', and \'run\' tasks.' , ['jshint', 'nodeunit', 'run']);
+    grunt.registerTask('default', 'Alias for \'jshint\', \'nodeunit\', and \'forever\' tasks.' , ['jshint', 'nodeunit', 'forever']);
 
     grunt.registerTask('available_tasks', 'List all available grunt tasks', function(sorted) {
         return require('./tasks/available_tasks')(grunt, sorted);

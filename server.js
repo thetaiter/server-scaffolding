@@ -5,13 +5,7 @@ var express = require('express'),
     port = process.env.PORT || 3000;
 
 app.get('/', function(req, res) {
-    console.log('User connected');
-
     res.send('Hello world!');
-
-    req.connection.on('close', function(err) {
-        console.log('User disconnected');
-    });
 });
 
 var server = app.listen(port, function() {
