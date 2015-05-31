@@ -16,11 +16,23 @@ module.exports = function(grunt) {
             options: {
                 reporter: 'default'
             }
+        },
+        forever: {
+            server: {
+                options: {
+                    index: 'server.js',
+                    logDir: 'logs',
+                    errFile: 'error.log',
+                    outFile: 'out.log',
+                    logFile: 'log.log'
+                }
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
+    grunt.loadNpmTasks('grunt-forever');
 
     grunt.registerTask('default', 'Alias for \'jshint\', \'nodeunit\', and \'run\' tasks.' , ['jshint', 'nodeunit', 'run']);
 

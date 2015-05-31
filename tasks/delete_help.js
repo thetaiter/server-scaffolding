@@ -6,8 +6,17 @@ module.exports = function(task, done) {
         return done(false);
     }
 
-    var help = require('./help.json'),
-        index = -1;
+    var help;
+
+    try{
+        help = require('./help.json');
+    } catch (err) {
+        console.error('No help file found.\n'.red);
+
+        return done(false);
+    }
+
+    var index = -1;
 
     help.forEach(function(t, i) {
         if (t[task]) {

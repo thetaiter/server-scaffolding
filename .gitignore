@@ -1,3 +1,4 @@
-*.log
+logs/
 *.swp
 node_modules/
+.idea/

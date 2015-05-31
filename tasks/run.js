@@ -1,15 +1,15 @@
 'use strict';
 
 module.exports = function(done) {
-    var server = require('../server.js'),
-        port = server.port,
-        server = server.server;
+    var serv = require('../server.js'),
+        port = serv.port,
+        server = serv.server;
 
     function shutdown(signal) {
         if (signal) {
-            console.log('\b\bCaught %s, killing server gracefully.'.yellow, signal);
+            console.warn('\b\bCaught %s, killing server gracefully.'.yellow, signal);
         } else {
-            console.log('Server shutdown gracefully.');
+            console.log('Server is shutting down now...');
         }
 
         server.close();
