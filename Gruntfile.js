@@ -5,7 +5,7 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         githooks: {
             all: {
-                'pre-commit': 'jshint, nodeunit'
+                'pre-commit': 'jshint nodeunit'
             }
         },
         jshint: {
