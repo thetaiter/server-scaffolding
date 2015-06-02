@@ -25,7 +25,7 @@ module.exports = function(grunt) {
         forever: {
             server: {
                 options: {
-                    index: 'server.js',
+                    index: 'app/server.js',
                     logDir: 'logs',
                     errFile: 'error.log',
                     outFile: 'out.log',
