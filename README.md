@@ -15,7 +15,7 @@ If you are using your own git repository, or contributing to this one, you can a
 ## Running the server
 ### Running your server (development only)
 
-To run your server, simply add your code to the `server.js` file, or replace it with your own file (make sure it is named `server.js`) and run `grunt run` to run the server, sending stderr and stdout to the terminal. To stop the server, send the SIGINT (`Ctrl-C`), SIGQUIT (`Ctrl-\`), or SIGTERM (`kill <pid>`) signal to the process. Try to refrain from using `kill -9 <pid>`, because that sends the SIGKILL signal, which cannot be caught or handled by any process. If you do choose to use that, the server may not shut down properly.
+To run your server, simply add your code to the `server.js` file, or replace it with your own file (make sure it is named `server.js`) and run `grunt run` to run the server, sending stderr and stdout to the terminal. If you replace it with your own file, make sure you export the server and port variables as in the `server.js` file provided. To stop the server, send the SIGINT (`Ctrl-C`), SIGQUIT (`Ctrl-\`), or SIGTERM (`kill <pid>`) signal to the process. Try to refrain from using `kill -9 <pid>`, because that sends the SIGKILL signal, which cannot be caught or handled by any process. If you do choose to use that, the server may not shut down properly.
 
 ### Running in the background (development only)
 
