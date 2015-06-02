@@ -1,0 +1,104 @@
+[
+  {
+    "available_tasks": {
+      "description": "List all available grunt tasks",
+      "args": {
+        "sorted": "Set to false if you want an unsorted list. Default is true."
+      },
+      "examples": [
+        "grunt available_tasks",
+        "grunt available_tasks:true",
+        "grunt available_tasks:false"
+      ]
+    }
+  },
+  {
+    "create_help": {
+      "description": "Creates a help entry for the specified grunt task.",
+      "args": {
+        "task": "The grunt task you want to create a help entry for."
+      },
+      "examples": [
+        "grunt create_help:my_custom_task",
+        "grunt create_help:available_tasks",
+        "grunt create_help:jshint"
+      ]
+    }
+  },
+  {
+    "default": {
+      "description": "Alias for 'jshint', 'nodeunit', and 'run' tasks.",
+      "examples": [
+        "grunt default"
+      ]
+    }
+  },
+  {
+    "delete_help": {
+      "description": "Delete the help entry for the specified grunt task.",
+      "args": {
+        "task": "The grunt task you wish to delete the help entry of."
+      },
+      "examples": [
+        "grunt delete_help:my_custom_task",
+        "grunt delete_help:create_help"
+      ]
+    }
+  },
+  {
+    "forever": {
+      "description": "Starts node app as a daemon.",
+      "examples": [
+        "grunt forever",
+        "grunt forever::start",
+        "grunt forever:server:start",
+        "grunt forever:server:stop",
+        "grunt forever:server:restart"
+      ]
+    }
+  },
+  {
+    "githooks": {
+      "description": "Binds grunt tasks to git hooks",
+      "examples": [
+        "grunt githooks"
+      ]
+    }
+  },
+  {
+    "help": {
+      "description": "View the help entry for the specified grunt task.",
+      "args": {
+        "task": "The task you want to see the help entry for."
+      },
+      "examples": [
+        "grunt help:my_custom_task",
+        "grunt help:forever"
+      ]
+    }
+  },
+  {
+    "jshint": {
+      "description": "Validate files with JSHint.",
+      "examples": [
+        "grunt jshint"
+      ]
+    }
+  },
+  {
+    "nodeunit": {
+      "description": "Run unit tests in 'tests' directory with NodeUnit.",
+      "examples": [
+        "grunt nodeunit"
+      ]
+    }
+  },
+  {
+    "run": {
+      "description": "Run the server.",
+      "examples": [
+        "grunt run"
+      ]
+    }
+  }
+]

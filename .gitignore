@@ -1,5 +1,4 @@
-*.log
-*.pid
-*.port
+logs/
 *.swp
 node_modules/
+.idea/
