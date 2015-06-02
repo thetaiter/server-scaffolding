@@ -58,6 +58,14 @@
     }
   },
   {
+    "githooks": {
+      "description": "Binds grunt tasks to git hooks",
+      "examples": [
+        "grunt githooks"
+      ]
+    }
+  },
+  {
     "help": {
       "description": "View the help entry for the specified grunt task.",
       "args": {

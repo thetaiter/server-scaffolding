@@ -5,6 +5,7 @@ module.exports = function(done) {
         port = serv.port,
         server = serv.server;
 
+    // Server errors handled here, in order to call 'done' function from grunt
     server.on('error', function(err) {
         if (err.message === 'listen EADDRINUSE') {
             console.error('%s'.red, err);
@@ -15,6 +16,10 @@ module.exports = function(done) {
 
         return done(false);
     });
+
+    //
+    // Override default signal handlers to properly shutdown the server.
+    //
 
     process.on('SIGINT', function() {
         process.exit('SIGINT');
