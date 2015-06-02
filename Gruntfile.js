@@ -40,7 +40,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
     grunt.loadNpmTasks('grunt-forever');
 
-    grunt.registerTask('default', 'Alias for \'jshint\', \'nodeunit\', and \'forever\' tasks.' , ['jshint', 'nodeunit', 'forever']);
+    grunt.registerTask('default', 'Alias for \'jshint\', and \'run\' tasks.' , ['jshint', 'nodeunit', 'run']);
 
     grunt.registerTask('available_tasks', 'List all available grunt tasks', function(sorted) {
         return require('./tasks/available_tasks')(grunt, sorted);
