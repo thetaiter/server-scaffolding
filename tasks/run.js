@@ -1,21 +1,7 @@
 'use strict';
 
 module.exports = function(done) {
-    var serv = require('../app/server.js'),
-        port = serv.port,
-        server = serv.server;
-
-    // Server errors handled here, in order to call 'done' function from grunt
-    server.on('error', function(err) {
-        if (err.message === 'listen EADDRINUSE') {
-            console.error('%s'.red, err);
-            console.error('\nIt\'s possible that port %s is in use. Perhaps you already have a server running on this port?\n', port);
-        } else {
-            console.error(('\n' + err).red);
-        }
-
-        return done(false);
-    });
+    var server = require('../app/server.js');
 
     //
     // Override default signal handlers to properly shutdown the server.

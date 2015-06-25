@@ -27,7 +27,7 @@ module.exports = function(grunt) {
         },
         githooks: {
             all: {
-                'pre-commit': 'jshint nodeunit'
+                'pre-commit': 'jshint'
             }
         },
         jshint: {
@@ -38,10 +38,12 @@ module.exports = function(grunt) {
                 }
             }
         },
-        nodeunit: {
-            all: ['tests/**/*_test.js'],
-            options: {
-                reporter: 'default' // Gives the ncie check marks and stuff :]
+        mochaTest: {
+            all: {
+                options: {
+                    reporter: 'list'
+                },
+                src: ['tests/**/*_test.js']
             }
         }
     });
@@ -49,10 +51,10 @@ module.exports = function(grunt) {
     /*
         Load the NPM tasks
     */
+    grunt.loadNpmTasks('grunt-forever');
     grunt.loadNpmTasks('grunt-githooks');
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-nodeunit');
-    grunt.loadNpmTasks('grunt-forever');
+    grunt.loadNpmTasks('grunt-mocha-test');
 
     /*
         Register custom tasks

@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+    h1.
+        #{title}
+    form#formAddUser(name='adduser', method='post', action='/users')
+        p Name:
+            input#inputName(type='text', placeholder='Jesse Pinkman', name='name')
+        p Username:
+            input#inputUsername(type='text', placeholder='pinkman88', name='username')
+        p Email:
+            input#inputEmail(type='text', placeholder='jpinkman@walterwhite.com', name='email')
+        p Password:
+            input#inputPassword(type='password', name='password')
+        p
+            button#submitButton(type='submit') Submit
