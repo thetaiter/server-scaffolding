@@ -2,3 +2,4 @@ logs/
 *.swp
 node_modules/
 .idea/
+npm-debug.log
