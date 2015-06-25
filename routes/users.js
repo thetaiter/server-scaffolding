@@ -1,10 +1,12 @@
+'use strict';
+
 var express = require('express'),
     router = express.Router(),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override');
 
-router.use(bodyParser.urlencoded({ extended: true }))
+router.use(bodyParser.urlencoded({ extended: true }));
 router.use(methodOverride(function(req, res){
   if (req.body && typeof req.body === 'object' && '_method' in req.body) {
     // look in urlencoded POST bodies and delete it
@@ -30,7 +32,7 @@ router.route('/')
             });
           },
           json: function() {
-            res.json(users)
+            res.json(users);
           }
         });
       });
@@ -76,8 +78,8 @@ router.param('id', function(req, res, next, id) {
       console.log(id + ' was not found');
 
       res.status(404);
-      error = new Error('Not Found');
-      error.status = 404
+      var error = new Error('Not Found');
+      error.status = 404;
 
       res.format({
         html: function() {

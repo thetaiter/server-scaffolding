@@ -8,7 +8,7 @@ var mongoose = require('mongoose'),
 var UserSchema = new Schema({
   name: {
     type: String,
-    default: "Jesse Pinkman"
+    default: 'Jesse Pinkman'
   },
   username: {
     type: String,
