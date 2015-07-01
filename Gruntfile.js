@@ -32,7 +32,7 @@ module.exports = function(grunt) {
         },
         jshint: {
             all: {
-                src: ['Gruntfile.js', 'app.js', 'model/**/*.js', 'public/javascripts/*/**.js', 'routes/**/*.js', 'tests/**/*.js', 'tasks/**/*.js'],
+                src: ['Gruntfile.js', 'app.js', 'model/**/*.js', 'public/javascripts/**/*.js', 'routes/**/*.js', 'tests/**/*.js', 'tasks/**/*.js', 'bin/**/*.js'],
                 options: {
                     jshintrc: true
                 }
