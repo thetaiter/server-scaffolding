@@ -27,9 +27,10 @@
   },
   {
     "default": {
-      "description": "Alias for 'jshint', 'nodeunit', and 'run' tasks.",
+      "description": "Alias for the 'jshint' and 'mochaTest' tasks.",
       "examples": [
-        "grunt default"
+        "grunt default",
+        "grunt"
       ]
     }
   },
@@ -42,18 +43,6 @@
       "examples": [
         "grunt delete_help:my_custom_task",
         "grunt delete_help:create_help"
-      ]
-    }
-  },
-  {
-    "forever": {
-      "description": "Starts node app as a daemon.",
-      "examples": [
-        "grunt forever",
-        "grunt forever::start",
-        "grunt forever:server:start",
-        "grunt forever:server:stop",
-        "grunt forever:server:restart"
       ]
     }
   },
@@ -73,7 +62,8 @@
       },
       "examples": [
         "grunt help:my_custom_task",
-        "grunt help:forever"
+        "grunt help:create_help",
+        "grunt help:delete_help"
       ]
     }
   },
@@ -86,18 +76,10 @@
     }
   },
   {
-    "nodeunit": {
-      "description": "Run unit tests in 'tests' directory with NodeUnit.",
+    "mochaTest": {
+      "description": "Run node unit tests with Mocha",
       "examples": [
-        "grunt nodeunit"
-      ]
-    }
-  },
-  {
-    "run": {
-      "description": "Run the server.",
-      "examples": [
-        "grunt run"
+        "grunt mochaTest"
       ]
     }
   }

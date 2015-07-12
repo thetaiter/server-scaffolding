@@ -1,57 +1,14 @@
 'use strict';
 
-/*
-   Grunt NPM Tasks:
-       forever - Used to run the server in the background and automatically restart if it fails.
-       githooks - Used to create githooks from grunt tasks.
-       jshint - Used to enforce good code styling and habits.
-       nodeunit - Used for unit testing.
-*/
-
 module.exports = function(grunt) {
     /*
         Grunt initialize function call, passing in the configuration JSON object
     */
-    grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
-        forever: {
-            server: {
-                options: {
-                    index: 'app/server.js',
-                    logDir: 'logs',
-                    errFile: 'error.log',
-                    outFile: 'out.log',
-                    logFile: 'log.log'
-                }
-            }
-        },
-        githooks: {
-            all: {
-                'pre-commit': 'jshint'
-            }
-        },
-        jshint: {
-            all: {
-                src: ['Gruntfile.js', 'app.js', 'model/**/*.js', 'public/javascripts/**/*.js', 'routes/**/*.js', 'tests/**/*.js', 'tasks/**/*.js', 'bin/**/*.js'],
-                options: {
-                    jshintrc: true
-                }
-            }
-        },
-        mochaTest: {
-            all: {
-                options: {
-                    reporter: 'list'
-                },
-                src: ['tests/**/*_test.js']
-            }
-        }
-    });
+    grunt.initConfig(require('./config/grunt'));
 
     /*
         Load the NPM tasks
     */
-    grunt.loadNpmTasks('grunt-forever');
     grunt.loadNpmTasks('grunt-githooks');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-mocha-test');
@@ -74,7 +31,7 @@ module.exports = function(grunt) {
             habit to get into, especially if you will be developing with other people. Fortunately, I have created a
             grunt task to do the job for you! Just run 'grunt help:create_help' to see how to create a help entry.
     */
-    grunt.registerTask('default', 'Alias for \'jshint\', and \'run\' tasks.' , ['jshint', 'nodeunit', 'run']);
+    grunt.registerTask('default', 'Alias for the \'jshint\' and \'mochaTest\' tasks.' , ['jshint', 'mochaTest']);
 
     grunt.registerTask('available_tasks', 'List all available grunt tasks', function(sorted) {
         return require('./tasks/available_tasks')(grunt, sorted);
@@ -92,11 +49,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('help', 'View the help entry for the specified grunt task.', function(task) {
         return require('./tasks/help.js')(task);
-    });
-
-    grunt.registerTask('run', 'Run the server.', function() {
-        var done = this.async();
-        return require('./tasks/run.js')(done);
     });
 };
 
