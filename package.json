@@ -2,6 +2,7 @@
   "name": "server-scaffolding",
   "repository": "http://github.com/thetaiter/server-scaffolding.git",
   "version": "0.0.1",
+  "license": "MIT",
   "description": "Development scaffolding for nodejs server",
   "main": "server.js",
   "scripts": {
@@ -25,8 +26,7 @@
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.11.2",
-    "grunt-contrib-nodeunit": "^0.4.1",
-    "grunt-forever": "^0.4.7",
-    "grunt-githooks": "^0.3.1"
+    "grunt-githooks": "^0.3.1",
+    "grunt-mocha-test": "^0.12.7"
   }
 }
