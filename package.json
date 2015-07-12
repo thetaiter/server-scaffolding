@@ -2,6 +2,7 @@
   "name": "server-scaffolding",
   "repository": "http://github.com/thetaiter/server-scaffolding.git",
   "version": "0.0.1",
+  "license": "MIT",
   "description": "Development scaffolding for nodejs server",
   "main": "server.js",
   "scripts": {
