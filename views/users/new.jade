@@ -1,6 +1,7 @@
 extends ../layout
 
 block content
+    input(type='button', onclick='parent.location="/users"', value='Back to All Users')
     h1.
         #{title}
     form#formAddUser(name='adduser', method='post', action='/users')
