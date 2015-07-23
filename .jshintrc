@@ -62,6 +62,8 @@
   "wsh": false,
   "yui": false,
   "globals": {
-    "angular": true
+    "angular": true,
+    "describe": true,
+    "it": true
   }
 }

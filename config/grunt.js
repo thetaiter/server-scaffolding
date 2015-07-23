@@ -4,7 +4,7 @@ module.exports = {
     pkg: require('../package.json'),
     githooks: {
         all: {
-            'pre-commit': 'jshint mochaTest'
+            'pre-commit': 'jshint'
         }
     },
     jshint: {
@@ -18,7 +18,7 @@ module.exports = {
     mochaTest: {
         all: {
             options: {
-                reporter: 'list'
+                reporter: 'spec'
             },
             src: ['tests/**/*_test.js']
         }
